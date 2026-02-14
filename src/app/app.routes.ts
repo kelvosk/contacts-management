@@ -5,6 +5,6 @@ export const routes: Routes = [
   {
     path: 'list',
     title: 'Contact List',
-    loadChildren: () => import('./contacts/contacts').then((c) => c.Contacts),
+    loadComponent: () => import('./contacts/contacts').then((c) => c.Contacts),
   },
 ];

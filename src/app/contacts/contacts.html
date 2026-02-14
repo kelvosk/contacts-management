@@ -10,6 +10,19 @@
         <th>Emergency Contact</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+      @if (contacts$ | async; as contacts) {
+        @for (contact of contacts; track contact.id) {
+          <tr>
+            <th scope="row">{{ contact.id }}</th>
+            <td>{{ contact.name }}</td>
+            <td>{{ contact.mobile }}</td>
+            <td>{{ contact.secondMobile }}</td>
+            <td>{{ contact.notes }}</td>
+            <td>{{ contact.isEmergencyContact }} - {{ contact.isBlocked }}</td>
+          </tr>
+        }
+      }
+    </tbody>
   </table>
 </div>
