@@ -7,7 +7,7 @@
         <th>Mobile 1</th>
         <th>Mobile 2</th>
         <th>Notes</th>
-        <th>Emergency Contact</th>
+        <th>Extra</th>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +19,18 @@
             <td>{{ contact.mobile }}</td>
             <td>{{ contact.secondMobile }}</td>
             <td>{{ contact.notes }}</td>
-            <td>{{ contact.isEmergencyContact }} - {{ contact.isBlocked }}</td>
+            <td>
+              @if (contact.isBlocked) {
+                <span>
+                  <i class="bi bi-ban"></i>
+                </span>
+              }
+              @if (contact.isEmergencyContact) {
+                <span>
+                  <i class="bi bi-patch-plus"></i>
+                </span>
+              }
+            </td>
           </tr>
         }
       }
