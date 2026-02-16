@@ -15,7 +15,7 @@
       "mobile": "97777777779",
       "secondMobile": "6666666666",
       "notes": "Cowork",
-      "isBlocked": false,
+      "isBlocked": true,
       "isEmergencyContact": false
     },
     {
@@ -25,7 +25,7 @@
       "secondMobile": "8844444444488888888",
       "notes": "Cowork",
       "isBlocked": false,
-      "isEmergencyContact": false
+      "isEmergencyContact": true
     }
   ]
 }
