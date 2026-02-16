@@ -3,6 +3,7 @@
     {
       "id": "1",
       "name": "John Doe",
+      "email": "johndoe@email.com",
       "mobile": "99999999999",
       "secondMobile": "8888888888",
       "notes": "Cowork",
@@ -12,6 +13,7 @@
     {
       "id": "2",
       "name": "John Bell",
+      "email": "johnbell@email.com",
       "mobile": "97777777779",
       "secondMobile": "6666666666",
       "notes": "Cowork",
@@ -21,9 +23,20 @@
     {
       "id": "3",
       "name": "John John",
+      "email": "johnjohn@email.com",
       "mobile": "555555555555",
       "secondMobile": "8844444444488888888",
       "notes": "Cowork",
+      "isBlocked": false,
+      "isEmergencyContact": true
+    },
+    {
+      "id": "5cfea6d7-458e-4f2b-81e6-e0a44749e69e",
+      "name": "Kelvin G",
+      "email": "kelving@gmail.com",
+      "mobile": "999999999",
+      "secondMobile": "",
+      "notes": "adsdasdadad",
       "isBlocked": false,
       "isEmergencyContact": true
     }
