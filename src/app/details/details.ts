@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { ContactService } from '../core/services/contact-service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -6,6 +8,18 @@ import { Component } from '@angular/core';
   templateUrl: './details.html',
   styleUrl: './details.scss',
 })
-export class Details {
+export class Details implements OnInit {
+  private contactServices = inject(ContactService);
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
 
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (!id) {
+        this.router.navigate(['/list']);
+        return;
+      }
+    });
+  }
 }

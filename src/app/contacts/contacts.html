@@ -1,8 +1,12 @@
-<div class="container">
-  <table class="table table-striped table-dark">
+<div class="container mt-3">
+  <div class="d-grid d-md-flex justify-content-md-end">
+    <button type="button" class="btn btn-primary" [routerLink]="['/create']">Create new</button>
+  </div>
+  <table class="table table-striped table-dark mt-3">
     <thead>
       <tr>
         <th scope="col">Name</th>
+        <th scope="col">Email</th>
         <th scope="col">Mobile 1</th>
         <th scope="col">Mobile 2</th>
         <th scope="col">Notes</th>
@@ -13,22 +17,23 @@
       @if (contacts$ | async; as contacts) {
         @for (contact of contacts; track contact.id) {
           <tr>
-            <td scope="row">{{ contact.name }}</td>
+            <td scope="row">
+              {{ contact.name }}
+              @if (contact.isEmergencyContact) {
+                <span>
+                  <i class="bi bi-patch-plus"></i>
+                </span>
+              }
+            </td>
+            <td>{{ contact.email }}</td>
             <td>{{ contact.mobile }}</td>
-            <td>{{ contact.secondMobile }}</td>
-            <td>{{ contact.notes }}</td>
+            <td>{{ validateFieldContentOrReturnDash(contact.secondMobile) }}</td>
+            <td>{{ validateFieldContentOrReturnDash(contact.notes) }}</td>
             <td>
               @if (!contact.isBlocked) {
                 <button class="btn btn-link p-0 text-danger" id="blockUser">
                   <span>
                     <i class="bi bi-ban"></i>
-                  </span>
-                </button>
-              }
-              @if (!contact.isEmergencyContact) {
-                <button class="btn btn-link p-0 text-danger">
-                  <span>
-                    <i class="bi bi-patch-plus"></i>
                   </span>
                 </button>
               }

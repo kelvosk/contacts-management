@@ -1,0 +1,70 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div class="container mt-5">
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input
+        type="text"
+        formControlName="name"
+        class="form-control"
+        id="name"
+        placeholder="John Doe"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <input
+        type="email"
+        formControlName="email"
+        class="form-control"
+        id="email"
+        placeholder="johndoe@email.com"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="mobile">Mobile 1</label>
+      <input
+        type="text"
+        maxlength="9"
+        formControlName="mobile"
+        class="form-control"
+        id="mobile"
+        placeholder="+351999999999"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="secondMobile">Mobile 2</label>
+      <input
+        type="text"
+        maxlength="9"
+        formControlName="secondMobile"
+        class="form-control"
+        id="secondMobile"
+        placeholder="+351999999999"
+      />
+    </div>
+    <div class="form-group">
+      <label for="notes">Notes:</label>
+      <textarea id="notes" formControlName="notes" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          formControlName="isEmergencyContact"
+          type="checkbox"
+          id="emergencyContact"
+        />
+        <label class="form-check-label" for="emergencyContact">Emergency Contact</label>
+      </div>
+    </div>
+    <div class="d-grid d-md-flex justify-content-md-end mt-5">
+      <button type="button" class="btn btn-secondary" [routerLink]="['/list']">Cancel</button>
+      <button type="submit" class="btn btn-primary ms-2" [disabled]="!contactForm.valid">
+        Create new Contact
+      </button>
+    </div>
+  </div>
+</form>
