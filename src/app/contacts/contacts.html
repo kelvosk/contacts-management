@@ -18,13 +18,14 @@
         @for (contact of contacts; track contact.id) {
           <tr>
             <td scope="row">
-              {{ contact.name }}
+              <a [routerLink]="['/edit/', contact.id]"> {{ contact.name }} </a>
               @if (contact.isEmergencyContact) {
                 <span>
                   <i class="bi bi-patch-plus"></i>
                 </span>
               }
             </td>
+
             <td>{{ contact.email }}</td>
             <td>{{ contact.mobile }}</td>
             <td>{{ validateFieldContentOrReturnDash(contact.secondMobile) }}</td>
