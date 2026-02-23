@@ -29,4 +29,8 @@ export class ContactService {
   getContactById(id: string): Observable<Contact> {
     return this.http.get<Contact>(`${this.contactsPath}/${id}`);
   }
+
+  blockContact(id: string, contact: Contact): Observable<Contact> {
+    return this.http.patch<Contact>(`${this.contactsPath}/${id}`, contact);
+  }
 }

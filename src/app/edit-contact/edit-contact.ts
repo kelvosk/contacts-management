@@ -3,7 +3,7 @@ import { ContactService } from '../core/services/contact-service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Contact } from '../core/models/contact';
-import { switchMap } from 'rxjs';
+import { EMPTY, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-edit-contact',
@@ -26,7 +26,7 @@ export class EditContact implements OnInit {
 
           if (!id) {
             this.router.navigate(['/list']);
-            throw new Error('Id not present');
+            return EMPTY;
           }
           this.requestId = id;
           return this.contactService.getContactById(id);

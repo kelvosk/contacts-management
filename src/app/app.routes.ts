@@ -17,4 +17,9 @@ export const routes: Routes = [
     title: 'Edit Contact',
     loadComponent: () => import('./edit-contact/edit-contact').then((c) => c.EditContact),
   },
+  {
+    path: 'details/:id',
+    title: 'Contact Details',
+    loadComponent: () => import('./details/details').then((c) => c.Details),
+  },
 ];

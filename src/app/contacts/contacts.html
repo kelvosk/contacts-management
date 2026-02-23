@@ -18,10 +18,15 @@
         @for (contact of contacts; track contact.id) {
           <tr>
             <td scope="row">
-              <a [routerLink]="['/edit/', contact.id]"> {{ contact.name }} </a>
+              <a [routerLink]="['/details/', contact.id]"> {{ contact.name }} </a>
               @if (contact.isEmergencyContact) {
                 <span>
                   <i class="bi bi-patch-plus"></i>
+                </span>
+              }
+              @if (contact.isBlocked) {
+                <span>
+                  <i class="bi bi-ban"></i>
                 </span>
               }
             </td>
@@ -31,13 +36,44 @@
             <td>{{ validateFieldContentOrReturnDash(contact.secondMobile) }}</td>
             <td>{{ validateFieldContentOrReturnDash(contact.notes) }}</td>
             <td>
-              @if (!contact.isBlocked) {
-                <button class="btn btn-link p-0 text-danger" id="blockUser">
-                  <span>
-                    <i class="bi bi-ban"></i>
-                  </span>
-                </button>
-              }
+              <ng-template #content let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Delete Todo?</h4>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    aria-label="Close"
+                    (click)="d('Cross click')"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    Do you want to {{ contact.isBlocked ? 'Unblock' : 'Block' }} {{ contact.name }}?
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" (click)="d('close')">
+                    Nevermind!
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    (click)="manageUserBlock(contact)"
+                  >
+                    Yes! {{ contact.isBlocked ? 'Unblock!' : 'Block!' }}
+                  </button>
+                </div>
+              </ng-template>
+              <button
+                class="btn btn-link p-0 text-danger"
+                id="blockUser"
+                (click)="openModal(content)"
+                [ngbTooltip]="showBlockToolTip(contact)"
+              >
+                <span>
+                  <i class="bi bi-ban"></i>
+                </span>
+              </button>
             </td>
           </tr>
         }
