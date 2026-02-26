@@ -22,7 +22,7 @@ export class CreateContact {
     }),
     mobile: new FormControl<string>('', {
       nonNullable: true,
-      validators: [Validators.maxLength(9), Validators.required],
+      validators: [Validators.maxLength(9), Validators.minLength(9), Validators.required],
     }),
     secondMobile: new FormControl<string>('', { validators: Validators.maxLength(9) }),
     notes: new FormControl<string>(''),

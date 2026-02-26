@@ -1,28 +1,35 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ContactService } from '../core/services/contact-service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Contact } from '../core/models/contact';
+import { CommonModule } from '@angular/common';
+import { EMPTY, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-details',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './details.html',
   styleUrl: './details.scss',
 })
 export class Details implements OnInit {
-  private contactServices = inject(ContactService);
+  private contactService = inject(ContactService);
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
 
-  request?: Contact;
+  public contact$!: Observable<Contact>;
+  public contactId: String = '';
 
-  ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      if (!id) {
-        this.router.navigate(['/list']);
-        return;
-      }
-    });
+  ngOnInit() {
+    this.contact$ = this.activatedRoute.paramMap.pipe(
+      switchMap((params) => {
+        const id = params.get('id');
+        if (!id) {
+          return EMPTY;
+        }
+        this.contactId = id;
+        return this.contactService.getContactById(id);
+      }),
+    );
   }
 }

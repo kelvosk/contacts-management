@@ -18,15 +18,15 @@
         @for (contact of contacts; track contact.id) {
           <tr>
             <td scope="row">
-              <a [routerLink]="['/details/', contact.id]"> {{ contact.name }} </a>
+              <a [routerLink]="['/details', contact.id]"> {{ contact.name }} </a>
               @if (contact.isEmergencyContact) {
                 <span>
-                  <i class="bi bi-patch-plus"></i>
+                  <i class="bi bi-patch-plus ms-2"></i>
                 </span>
               }
               @if (contact.isBlocked) {
                 <span>
-                  <i class="bi bi-ban"></i>
+                  <i class="bi bi-ban ms-2"></i>
                 </span>
               }
             </td>

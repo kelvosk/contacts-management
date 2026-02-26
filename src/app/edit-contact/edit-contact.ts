@@ -7,6 +7,7 @@ import { EMPTY, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-edit-contact',
+  standalone: true,
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './edit-contact.html',
   styleUrl: './edit-contact.scss',
@@ -50,7 +51,7 @@ export class EditContact implements OnInit {
     }),
     mobile: new FormControl<string>('', {
       nonNullable: true,
-      validators: [Validators.maxLength(9), Validators.required],
+      validators: [Validators.minLength(9), Validators.maxLength(9), Validators.required],
     }),
     secondMobile: new FormControl<string>('', { validators: Validators.maxLength(9) }),
     notes: new FormControl<string>(''),

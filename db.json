@@ -6,8 +6,8 @@
       "mobile": "999999999",
       "secondMobile": "888888889",
       "notes": "Coworkaa",
-      "isBlocked": false,
-      "isEmergencyContact": false,
+      "isBlocked": true,
+      "isEmergencyContact": true,
       "id": "1"
     },
     {

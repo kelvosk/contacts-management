@@ -1,31 +1,40 @@
-<div class="container mt-5">
-  <div>
-    <label for="name">Name: </label>
-    <span class="fw-bold" id="name">{{ contact?.name }}</span>
-  </div>
-  <div>
-    <label for="email">Email: </label>
-    <span class="fw-bold" id="email">{{ contact?.email }}</span>
-  </div>
-  <div>
-    <label for="mobile">Mobile 1: </label>
-    <span class="fw-bold" id="mobile">{{ contact?.mobile }}</span>
-  </div>
-  <div>
-    <label for="secondMobile">Mobile 2: </label>
-    <span class="fw-bold" id="secondMobile">{{ contact?.secondMobile }}</span>
-  </div>
-  <div>
-    <label for="notes">Notes: </label>
-    <span class="fw-bold" id="notes">{{ contact?.notes }}</span>
-  </div>
-  <div>
+@if (contact$ | async; as contact) {
+  <div class="container mt-5">
     <div>
-      <input type="checkbox" id="emergencyContact" [checked]="contact?.isBlocked" disabled />
-      <label class="fw-bold" for="emergencyContact">Emergency Contact</label>
+      <label for="name">Name: </label>
+      <span class="fw-bold" id="name">{{ contact?.name }}</span>
+    </div>
+    <div>
+      <label for="email">Email: </label>
+      <span class="fw-bold" id="email">{{ contact?.email }}</span>
+    </div>
+    <div>
+      <label for="mobile">Mobile 1: </label>
+      <span class="fw-bold" id="mobile">{{ contact?.mobile }}</span>
+    </div>
+    <div>
+      <label for="secondMobile">Mobile 2: </label>
+      <span class="fw-bold" id="secondMobile">{{ contact?.secondMobile }}</span>
+    </div>
+    <div>
+      <label for="notes">Notes: </label>
+      <span class="fw-bold" id="notes">{{ contact?.notes }}</span>
+    </div>
+    <div>
+      <div>
+        <input type="checkbox" id="emergencyContact" [checked]="contact?.isBlocked" disabled />
+        <label class="fw-bold" for="emergencyContact">Emergency Contact</label>
+      </div>
+    </div>
+    <div class="d-grid d-md-flex justify-content-md-end mt-5">
+      <button type="button" class="btn btn-secondary" [routerLink]="['/list']">Back to list</button>
+      <button type="button" class="btn btn-primary ms-2" [routerLink]="['/edit', contactId]">
+        Update
+      </button>
     </div>
   </div>
-  <div class="d-grid d-md-flex justify-content-md-end mt-5">
-    <button type="button" class="btn btn-primary">Update</button>
-  </div>
-</div>
+} @else {
+  <ng-template>
+    <p>Loading Contact...</p>
+  </ng-template>
+}

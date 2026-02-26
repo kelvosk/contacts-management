@@ -10,6 +10,10 @@
         placeholder="John Doe"
         required
       />
+      @let nameControl = this.contactForm.get('name');
+      @if (nameControl?.dirty && nameControl?.errors?.['required']) {
+        <small class="error-message">Name is required!</small>
+      }
     </div>
     <div class="form-group">
       <label for="email">Email: </label>
@@ -21,6 +25,14 @@
         placeholder="johndoe@email.com"
         required
       />
+      @let emailControl = this.contactForm.get('email');
+      @if (emailControl?.dirty && emailControl?.invalid) {
+        @if (emailControl?.errors?.['required']) {
+          <small class="error-message">Email is required!</small>
+        } @else if (emailControl?.errors?.['email']) {
+          <small class="error-message">Invalid email format!</small>
+        }
+      }
     </div>
     <div class="form-group">
       <label for="mobile">Mobile 1</label>
@@ -33,6 +45,14 @@
         placeholder="+351999999999"
         required
       />
+      @let mobileControl = this.contactForm.get('mobile');
+      @if (mobileControl?.dirty && mobileControl?.invalid) {
+        @if (mobileControl?.dirty && mobileControl?.errors?.['required']) {
+          <small class="error-message">Mobile is required!</small>
+        } @else if (mobileControl?.errors?.['minlength'] || mobileControl?.errors?.['maxlength']) {
+          <small class="error-message">Mobile must have 9 digits!</small>
+        }
+      }
     </div>
     <div class="form-group">
       <label for="secondMobile">Mobile 2</label>
